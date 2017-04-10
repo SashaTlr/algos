@@ -1,0 +1,50 @@
+// algorithm to determine if string has all unique characters
+// with and without additional data structures
+
+// ASK if ASCII or Unicode
+// Check length of string - if greater than 128 chars, has to have duplicates
+
+psuedocode
+// with additional data structures
+
+O(n)
+
+DEF unique_characters(string x)
+
+  For each character in x
+    pop each char off the string
+    if hash(x) exists then end algo, there are unique characters
+    else no unique characters
+
+END
+
+// without additional data structures
+O(nlogn)
+
+Use sort-in-place algorithm to sort (nlogn)
+
+For each character in x
+  if char == x(i+1) THEN
+    there are unique chars
+    end
+END
+
+Ruby:
+O(n)
+
+def unique_chars(charString)
+
+  charCollect = {}
+
+  charString = charString.chars
+
+  while charString.length > 0
+    testchar = charString.pop()
+    if charCollect[testchar]
+      return false
+    else
+      charCollect[testchar] = true
+    end
+  end
+  return true
+end
