@@ -1,0 +1,30 @@
+// Implement a function void reverse(char* str) in C or C++ which reverses a null-terminated string
+
+// dont create a new string
+
+// get string index and string length
+// increment index
+// for character at index and length - 1 - index
+    while index < length - 1 - index
+      swap the characters
+    done when index >= length - 1 - index
+
+def reverse_string(string)
+
+  midway = string.length / 2
+  str_length = string.length
+
+  midway.times{ |index|
+    string[index], string[str_length - 1 - index] = string[str_length - 1 - index], string[index]
+  }
+
+  return string
+end
+
+//using enumerables
+
+def reverse_string_enum!(string)
+
+  string.chars.inject([]) {|s, c| s.unshift(c)}.join
+
+end
