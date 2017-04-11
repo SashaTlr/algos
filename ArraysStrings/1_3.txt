@@ -1,0 +1,60 @@
+Given two strings, write a method to decide if one is a permutation of the other
+
+//permutation has same letters, different order
+
+//case sensitive?
+
+
+
+//check string length - if not equal, not a permutation
+//Sort both strings
+//O(n + nlogn)
+// check if strings are equal (n)
+
+//unsorted
+//O(2n)
+// go through each char in string 1 and save to hash with a value for count
+
+// go through each char in string 2
+// if hash doesnt exist for value, return false
+// if has exists, decrease value by one
+// if value is 1, delete hash
+// if any hash remaining or cant find key for that value, not a permutation
+
+method 1 test
+
+def permutations(string1, string2)
+  if string1.length != string2.length
+    return false
+  end
+
+  string1.chars.sort.join
+  string2.chars.sort.join
+
+  return string1.eql?(string2)
+
+end
+
+method 2 test
+def permutations2(string1, string2)
+  if string1.length != string2.length
+    return false
+  end
+
+  charCount = {}
+  string1.each_char{|c|
+    charCount[c] ? charCount[c] += 1 : charCount[c] = 1
+  }
+
+  string2.each_char{ |c|
+    if !charCount[c]
+      return false
+    elsif charCount[c] > 1
+      charCount[c] -= 1
+    elsif charCount[c] == 1
+      charCount.delete(c)
+    end
+
+    }
+    return charCount.empty?
+  end
