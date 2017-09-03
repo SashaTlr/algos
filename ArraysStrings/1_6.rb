@@ -1,6 +1,7 @@
 #String Compression
 #basic string compression using counts of repeated characters
 #eg aabcccccaaa is a2b1c5a3
+#solution is O(n)
 
 def stringCompress(fullString)
 
