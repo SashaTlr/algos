@@ -12,8 +12,8 @@ end
 class Stack
 
   attr_accessor :first
-  def initialize
-    @first = nil
+  def initialize(node)
+    @first = node
   end
 
   def pop
@@ -36,8 +36,8 @@ end
 class StackMin
   attr_accessor :stack, :min_stack
   def initialize
-    @stack = Stack.new(value, nil)
-    @min_stack = Stack.new(value, nil)
+    @stack = Stack.new(Node.new(value, nil))
+    @min_stack = Stack.new(Node.new(value, nil))
   end
 
   def push(value)
