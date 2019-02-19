@@ -20,6 +20,7 @@ class Count(dict):
 	def __missing__(self, key):
 		return 0
 
+# __missing__ defines function return if key is not present in dictionary
 
 if __name__ == "__main__":
 	import sys
