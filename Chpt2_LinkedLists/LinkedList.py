@@ -25,6 +25,18 @@ class LinkedList:
 		values = [str(x) for x in self]
 		return ' -> '.join(values)
 
+	def getNode(self, index):
+		current = self.head
+
+		if index == 0:	
+			return current
+
+		for x in range(index):
+			if current is None:
+				raise ValueError("Index is out of range")
+			else:
+				current = current.next
+		return current
 
 	def add(self, value):
 		if self.head is None:
