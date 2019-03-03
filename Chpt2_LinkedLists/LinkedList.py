@@ -38,6 +38,18 @@ class LinkedList:
 				current = current.next
 		return current
 
+	def addNode(self, node):
+		_node = node
+		if self.head is None:
+			self.head = self.tail = _node
+			_node = node.next
+
+		while _node:
+			self.tail.next = _node
+			self.tail = _node
+			_node = _node.next
+		return self
+
 	def add(self, value):
 		if self.head is None:
 			self.head = self.tail = Node(value)
