@@ -1,11 +1,15 @@
-from ./../Chpt2_LinkedLists/LinkedList import LinkedList
+from LinkedList import *
 import unittest
 
 
 class Animal():
-  def __init__(self, name, order):
+	
+  def __init__(self, name):
     self.name = name
-    self.order = order
+    self.order = None
+
+  def setOrder(self, order):
+  	self.order = order
 
   def __str__(self):
     return self.name
@@ -16,13 +20,13 @@ class Dog(Animal): pass
 
 class AnimalShelter:
 	def __init__(self):
-		self.dogs = new LinkedList()
-		self.cats = new LinkedList()
+		self.dogs = LinkedList()
+		self.cats = LinkedList()
 		self.order = 1
 
 	def enqueue(self, animal):
-		animal.order = order
-		order += 1
+		animal.setOrder(self.order)
+		self.order += 1
 		if animal.__class__ == Dog:
 			self.dogs.add(animal)
 		else:
@@ -46,7 +50,7 @@ class AnimalShelter:
 	def dequeueCat(self):
 		return self.__dequeueList(self.cats)
 		
-	def __dequeueList(ll):
+	def __dequeueList(self, ll):
 		if ll.head is None:
 			return None
 		else:
@@ -56,22 +60,32 @@ class AnimalShelter:
 
 
 class Test(unittest.TestCase):
-  def test_animal_shelter(self):
+  def test_animalShelter(self):
     shelter = AnimalShelter()
-    shelter.enqueue(Cat("Hanzack"))
-    shelter.enqueue(Dog("Pluto"))
-    shelter.enqueue(Cat("Garfield"))
-    shelter.enqueue(Cat("Tony"))
-    shelter.enqueue(Dog("Clifford"))
-    shelter.enqueue(Dog("Blue"))
-    self.assertEqual(str(shelter.dequeueAny()), "Hanzack")
-    self.assertEqual(str(shelter.dequeueAny()), "Garfield")
-    self.assertEqual(str(shelter.dequeueDog()), "Pluto")
-    self.assertEqual(str(shelter.dequeueDog()), "Clifford")
-    self.assertEqual(str(shelter.dequeueCat()), "Tony")
-    self.assertEqual(str(shelter.dequeueCat()), "None")
-    self.assertEqual(str(shelter.dequeueAny()), "Blue")
-    self.assertEqual(str(shelter.dequeueAny()), "None")
+
+    cat1 = Cat("One")
+    cat2 = Cat("Two")
+    cat3 = Cat("Three")
+
+    dog1 = Dog("One")
+    dog2 = Dog("Two")
+    dog3 = Dog("Three")
+
+    shelter.enqueue(cat1)
+    shelter.enqueue(dog1)
+    shelter.enqueue(cat2)
+    shelter.enqueue(cat3)
+    shelter.enqueue(dog2)
+    shelter.enqueue(dog3)
+
+    self.assertEqual(shelter.dequeueAny(), cat1)
+    self.assertEqual(shelter.dequeueAny(), dog1)
+    self.assertEqual(shelter.dequeueDog(), dog2)
+    self.assertEqual(shelter.dequeueDog(), dog3)
+    self.assertEqual(shelter.dequeueCat(), cat2)
+    self.assertEqual(shelter.dequeueCat(), cat3)
+    self.assertEqual(shelter.dequeueAny(), None)
+    self.assertEqual(shelter.dequeueAny(), None)
 
 if __name__ == "__main__":
   unittest.main()
