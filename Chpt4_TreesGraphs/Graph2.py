@@ -7,6 +7,24 @@ class Node:
 	def add_adjacent(self, node_adj):
 		self.adjacents.append(node_adj)
 		return self
+		
+class BTNode:
+
+	def __init__(self, value, left = None, right = None):
+		self.value = value
+		self.left = left
+		self.right = right
+
+	def add_left(self, left):
+		self.left = left
+		return self
+
+	def add_right(self, right):
+		self.right = right
+		return self
+
+	def __str__(self):
+		return str(self.value)
 
 
 class Graph:
