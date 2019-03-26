@@ -25,47 +25,42 @@ class BTNode:
 
 def ListofDepthsBFS(root):
 	resultList = []
-	currentList = []
-
+	#use current list to iterate first depth
+	#switch to parrent to traverse next list
 	if not root:
 		return None
 
-	currentList.append(root)
+	currentList = [root]
 
 	while len(currentList) > 0:
-		
-		result.append(currentList)
+		resultList.append(currentList)
 		parentList = currentList
 		currentList = []
 
 		for node in parentList:
-			if node.left is not None:
+
+			if node.left:
 				currentList.append(node.left)
-			if node.right is not None:
+			if node.right:
 				currentList.append(node.right)
+
 
 	return resultList
 
-def ListofDepthsDFS(root, level = 0, ll = [[]]):
-	if not root:
-		return ll
 
-	if len(ll) <= level:
+def ListOfDepthsDFS(root):
+	ll = [[]]
+	ListofDepthsDFSRecursion(root, ll, 0)
+	return ll
+
+def ListofDepthsDFSRecursion(root, ll, level = 0):
+	if not root:
+		return
+
+	if len(ll) < level + 1:
 		ll.append([])
 
 	ll[level].append(root)
 
-	ListofDepthsDFS(root.left, level + 1, ll)
-	ListofDepthsDFS(root.right, level + 1, ll)
-
-
-# result = array of linked lists of nodes
-#initialize new list
-#if root isnlt null, add root to new list
-
-#while current list isnt 0, add current to result
-
-#create parent list and set equal to current list
-#current is new list
-#for loop through nodes in parent list
-#add non null children of parent list to current
+	ListofDepthsDFS(root.left, ll, level + 1)
+	ListofDepthsDFS(root.right, ll, level + 1)
