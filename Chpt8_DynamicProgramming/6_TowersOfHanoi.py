@@ -18,7 +18,7 @@ class Tower:
 		else:
 			return self.items[-1]
 
-	def move_disk(self, destTower):
+	def move_top_disk(self, destTower):
 		if not self.isEmpty():
 			if self.peek() <= destTower.peek():
 				destTower.push(self.pop())
@@ -26,22 +26,26 @@ class Tower:
 				raise Exception("disk is too large")
 		return destTower
 
+	def move_disks(self, n, destination, buffers):
+		if n > 0:
+			self.move_disks(n-1, buffers, destination) #move n-1 to buffer tower
+			self.move_top_disk(destination) #when n = 1
+			buffers.(n-1, destination, self)
+			#move n-1 disks to destination via buffer
 
-def TowersOfHanoi(initTower, bufferTower, destTower):
-	if len(initTower) == 1:
-		initTower.move_disk(destTower)
-		return (initTower, bufferTower, destTower)
+Start = new Tower.push(1).push(2).push(3).push(4)
+Buffer = new Tower()
+Dest = new Tower()
 
-	if len(initTower) == 2:
-		initTower.move_disk(bufferTower):
-		initTower.move_disk(destTower)
-		bufferTower.move_disk(destTower)
-		return (initTower, bufferTower, destTower)
+Start.move_disks(4, Dest, Buffer)
+		Start.move_disks(3, Buffer, Dest)
+			Start.move_disks(2, Dest, Buffer)
+				Start.move_disks(1, Buffer, Dest)
+					Start.move_top_disk(Buffer)
+				Buffer.move_disks(1, Dest, Start)
+			
 
-	if len(initTower == 3)
-		initTower, bufferTower, destTower = TowersOfHanoi(initTower[:2], destTower, bufferTower)
-		initTower.move_disk(destTower)
-		return TowersOfHanoi(initTower, bufferTower, destTower)
+
 
 
 

@@ -28,17 +28,14 @@ def perms_with_dupes_recurse(word, charSet, n, results):
 		results.append(word)
 
 	for char in charSet:
-		if charSet[char] == 1:
-			del charSet[char]
+		if charSet[char] == 0:
+			continue
 		else:
 			charSet[char] -= 1
 
 		perms_with_dupes_recurse(word + char, charSet, n, results)
 		
-		if char not in charSet:
-			charSet[char] = 1
-		else:
-			charSet[char] += 1
+		charSet[char] += 1
 
 def get_char_set(word):
 	charSet = {}
