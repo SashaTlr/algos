@@ -10,7 +10,7 @@ def isMatch(root1, root2):
 	elif root1.data != root2.data:
 		return False
 	else:
-		return isMatch(root1.left, root2.left) && isMatch(root1.right, root2.right)
+		return isMatch(root1.left, root2.left) and isMatch(root1.right, root2.right)
 
 
 def checkSubtree(tree1, tree2):
